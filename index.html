@@ -52,8 +52,8 @@
         <div class="container">
           <div class="hero-animate">
             <p class="hero-badge">Rural moderno · Entrega cercana</p>
-            <h1>Alma de Granja</h1>
-            <p>Productos frescos del campo a tu mesa, con cercanía, confianza y un servicio pensado para la vida moderna.</p>
+            <h1>El alma del campo<br />en tu mesa.</h1>
+            <p>Productos frescos y cuidados, listos para llegar a tu hogar con calidez, confianza y un servicio atento.</p>
             <div class="cta-group">
               <a class="btn" href="tienda.html">Ver tienda</a>
               <a class="btn secondary" href="#contacto">Contáctanos</a>
@@ -92,7 +92,7 @@
 
       <section class="section">
         <div class="container">
-          <h2>Destacados del campo</h2>
+          <h2>Destacados de la semana</h2>
           <p class="section-subtitle">Seleccionados para sorprenderte esta semana.</p>
           <div id="featured-products" class="cards-grid"></div>
         </div>
@@ -169,21 +169,25 @@
               <strong id="cart-subtotal">$0</strong>
             </div>
             <form id="cart-form" class="compact-form">
-              <div class="double-column">
-                <div>
-                  <label>Nombre</label>
-                  <input name="nombre" type="text" placeholder="Nombre" />
+              <div class="summary-fields">
+                <div class="double-column">
+                  <div>
+                    <label>Nombre</label>
+                    <input name="nombre" type="text" placeholder="Nombre" />
+                  </div>
+                  <div>
+                    <label>Apellido</label>
+                    <input name="apellido" type="text" placeholder="Apellido" />
+                  </div>
                 </div>
-                <div>
-                  <label>Apellido</label>
-                  <input name="apellido" type="text" placeholder="Apellido" />
-                </div>
+                <label>Dirección</label>
+                <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+                <label>Comentarios</label>
+                <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
               </div>
-              <label>Dirección</label>
-              <input name="direccion" type="text" placeholder="Calle, número, comuna" />
-              <label>Comentarios</label>
-              <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
-              <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              <div class="cart-form-footer">
+                <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              </div>
             </form>
           </div>
         </div>

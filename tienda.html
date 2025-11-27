@@ -134,21 +134,25 @@
               <strong id="cart-subtotal">$0</strong>
             </div>
             <form id="cart-form" class="compact-form">
-              <div class="double-column">
-                <div>
-                  <label>Nombre</label>
-                  <input name="nombre" type="text" placeholder="Nombre" />
+              <div class="summary-fields">
+                <div class="double-column">
+                  <div>
+                    <label>Nombre</label>
+                    <input name="nombre" type="text" placeholder="Nombre" />
+                  </div>
+                  <div>
+                    <label>Apellido</label>
+                    <input name="apellido" type="text" placeholder="Apellido" />
+                  </div>
                 </div>
-                <div>
-                  <label>Apellido</label>
-                  <input name="apellido" type="text" placeholder="Apellido" />
-                </div>
+                <label>Dirección</label>
+                <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+                <label>Comentarios</label>
+                <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
               </div>
-              <label>Dirección</label>
-              <input name="direccion" type="text" placeholder="Calle, número, comuna" />
-              <label>Comentarios</label>
-              <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
-              <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              <div class="cart-form-footer">
+                <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              </div>
             </form>
           </div>
         </div>
