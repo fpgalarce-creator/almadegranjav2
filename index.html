@@ -21,7 +21,15 @@
         <nav>
           <ul id="nav-links" class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="tienda.html">Tienda</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-dropdown-toggle" href="tienda.html">Tienda</a>
+              <ul class="dropdown-menu">
+                <li><a href="tienda.html?categoria=huevos">Huevos</a></li>
+                <li><a href="tienda.html?categoria=quesos">Quesos</a></li>
+                <li><a href="tienda.html?categoria=frutos-secos">Frutos secos</a></li>
+                <li><a href="tienda.html?categoria=otros">Otros</a></li>
+              </ul>
+            </li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="contacto.html">Contáctanos</a></li>
             <li><a id="admin-link" class="hidden" href="admin.html">Panel Admin</a></li>
@@ -51,28 +59,30 @@
               <a class="btn secondary" href="#contacto">Contáctanos</a>
             </div>
           </div>
-          <div class="how-it-works hero-card">
-            <h3>Cómo funciona</h3>
-            <div class="hero-steps">
-              <div class="step">
-                <span class="step-index">1</span>
-                <div>
-                  <p class="step-title">Arma tu pedido</p>
-                  <p>Elige tus productos favoritos del campo y agrégalos al carrito.</p>
+          <div class="how-it-works-wrapper">
+            <div class="how-it-works hero-card">
+              <h3>Cómo funciona</h3>
+              <div class="hero-steps">
+                <div class="step">
+                  <span class="step-index">1</span>
+                  <div>
+                    <p class="step-title">Arma tu pedido</p>
+                    <p>Elige tus productos favoritos del campo y agrégalos al carrito.</p>
+                  </div>
                 </div>
-              </div>
-              <div class="step">
-                <span class="step-index">2</span>
-                <div>
-                  <p class="step-title">Envía por WhatsApp</p>
-                  <p>Confirmamos el detalle y coordinamos la entrega por chat.</p>
+                <div class="step">
+                  <span class="step-index">2</span>
+                  <div>
+                    <p class="step-title">Envía por WhatsApp</p>
+                    <p>Confirmamos el detalle y coordinamos la entrega por chat.</p>
+                  </div>
                 </div>
-              </div>
-              <div class="step">
-                <span class="step-index">3</span>
-                <div>
-                  <p class="step-title">Recibe en tu casa</p>
-                  <p>Despachos con cuidado en Rancagua, Graneros y Machalí.</p>
+                <div class="step">
+                  <span class="step-index">3</span>
+                  <div>
+                    <p class="step-title">Recibe en tu casa</p>
+                    <p>Despachos con cuidado en Rancagua, Graneros y Machalí.</p>
+                  </div>
                 </div>
               </div>
             </div>

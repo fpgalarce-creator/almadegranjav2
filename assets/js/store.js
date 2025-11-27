@@ -12,6 +12,7 @@ const initialProducts = [
     id: 'h1',
     nombre: 'Huevos de campo XL',
     categoria: 'Huevos',
+    isFeatured: true,
     descripcion: 'Docena de huevos frescos de gallinas libres',
     presentacion: 'Docena',
     precio: 6990,
@@ -22,6 +23,7 @@ const initialProducts = [
     id: 'h2',
     nombre: 'Huevos orgánicos mixtos',
     categoria: 'Huevos',
+    isFeatured: false,
     descripcion: 'Surtido de tamaños, gallinas de patio',
     presentacion: 'Docena',
     precio: 6290,
@@ -32,6 +34,7 @@ const initialProducts = [
     id: 'q1',
     nombre: 'Queso mantecoso',
     categoria: 'Quesos',
+    isFeatured: true,
     descripcion: 'Queso mantecoso suave ideal para fundir',
     presentacion: '1 kg',
     precio: 10990,
@@ -42,6 +45,7 @@ const initialProducts = [
     id: 'q2',
     nombre: 'Queso de cabra maduro',
     categoria: 'Quesos',
+    isFeatured: true,
     descripcion: 'Maduración media, sabor intenso',
     presentacion: '500 g',
     precio: 13990,
@@ -52,6 +56,7 @@ const initialProducts = [
     id: 'f1',
     nombre: 'Almendras naturales',
     categoria: 'Frutos secos',
+    isFeatured: true,
     descripcion: 'Almendra nacional, sin sal, cruda',
     presentacion: '500 g',
     precio: 7490,
@@ -62,6 +67,7 @@ const initialProducts = [
     id: 'f2',
     nombre: 'Nueces mariposa',
     categoria: 'Frutos secos',
+    isFeatured: false,
     descripcion: 'Nuez premium seleccionada',
     presentacion: '500 g',
     precio: 8490,
@@ -72,6 +78,7 @@ const initialProducts = [
     id: 'f3',
     nombre: 'Mix frutos secos deluxe',
     categoria: 'Frutos secos',
+    isFeatured: false,
     descripcion: 'Almendras, nueces, cranberries y maní tostado',
     presentacion: '500 g',
     precio: 7890,
@@ -82,6 +89,7 @@ const initialProducts = [
     id: 'o1',
     nombre: 'Mermelada artesanal de mora',
     categoria: 'Otros',
+    isFeatured: true,
     descripcion: 'Receta casera, sin conservantes',
     presentacion: '350 g',
     precio: 4590,
@@ -92,6 +100,7 @@ const initialProducts = [
     id: 'o2',
     nombre: 'Miel multiflora',
     categoria: 'Otros',
+    isFeatured: false,
     descripcion: 'Cosecha local filtrada en frío',
     presentacion: '500 g',
     precio: 5590,
@@ -118,7 +127,8 @@ function loadProducts() {
     return [...initialProducts];
   }
   try {
-    return JSON.parse(stored);
+    const parsed = JSON.parse(stored);
+    return parsed.map((product) => ({ ...product, isFeatured: product.isFeatured ?? false }));
   } catch (error) {
     console.error('Error leyendo productos, reinicializando', error);
     localStorage.setItem(STORAGE_KEYS.products, JSON.stringify(initialProducts));
