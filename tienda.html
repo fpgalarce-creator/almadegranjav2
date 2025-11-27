@@ -48,39 +48,60 @@
     </header>
 
     <main>
-      <section class="hero-sub">
+      <section class="shop-hero">
         <div class="container">
-          <h1>Tienda</h1>
-          <p>Selecciona tus productos favoritos por categoría.</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="floating-card catalog-card">
+          <div class="shop-hero__intro">
             <div>
-              <h2>Catálogo</h2>
-              <p class="section-subtitle">Todo lo que tenemos listo para ti esta semana.</p>
-              <div class="chip-group" id="category-chips">
-                <button class="chip active" data-category="Todas">Todas</button>
-                <button class="chip" data-category="Huevos">Huevos</button>
-                <button class="chip" data-category="Quesos">Quesos</button>
-                <button class="chip" data-category="Frutos secos">Frutos secos</button>
-                <button class="chip" data-category="Otros">Otros</button>
+              <p class="pill-badge">Tienda</p>
+              <h1>Selecciona tus productos favoritos por categoría</h1>
+              <p>Curamos lo mejor del campo cada semana para que llenes tu despensa con frescura y calidez.</p>
+            </div>
+            <div class="shop-hero__aside">
+              <div class="hero-card">
+                <p class="section-subtitle">Entrega cercana</p>
+                <h3>Despacho coordinado</h3>
+                <p>Revisamos tu pedido, confirmamos por WhatsApp y agendamos tu entrega con un toque humano.</p>
               </div>
             </div>
-            <div style="justify-self: end; display: grid; gap: 6px;">
-              <label for="category-filter" style="font-weight: 600; color: var(--verde-oscuro);">Filtrar</label>
-              <select id="category-filter" style="min-width: 200px">
-                <option value="Todas">Todas</option>
-                <option value="Huevos">Huevos</option>
-                <option value="Quesos">Quesos</option>
-                <option value="Frutos secos">Frutos secos</option>
-                <option value="Otros">Otros</option>
-              </select>
-            </div>
           </div>
-          <div id="store-grid" class="cards-grid store-grid"></div>
+
+          <div class="shop-catalog">
+            <div class="shop-toolbar">
+              <div>
+                <h2>Catálogo</h2>
+                <p class="section-subtitle">Elige por categoría, filtra y ordena como prefieras.</p>
+                <div class="chip-group" id="category-chips">
+                  <button class="chip active" data-category="Todas">Todas</button>
+                  <button class="chip" data-category="Huevos">Huevos</button>
+                  <button class="chip" data-category="Quesos">Quesos</button>
+                  <button class="chip" data-category="Frutos secos">Frutos secos</button>
+                  <button class="chip" data-category="Otros">Otros</button>
+                </div>
+              </div>
+              <div class="shop-filters">
+                <div class="filter-block">
+                  <label for="category-filter">Filtrar</label>
+                  <select id="category-filter">
+                    <option value="Todas">Todas</option>
+                    <option value="Huevos">Huevos</option>
+                    <option value="Quesos">Quesos</option>
+                    <option value="Frutos secos">Frutos secos</option>
+                    <option value="Otros">Otros</option>
+                  </select>
+                </div>
+                <div class="sort-block">
+                  <span>Ordenar</span>
+                  <div class="sort-buttons">
+                    <button class="chip active" data-sort="price-asc">Precio: menor a mayor</button>
+                    <button class="chip" data-sort="price-desc">Precio: mayor a menor</button>
+                    <button class="chip" data-sort="az">A-Z</button>
+                    <button class="chip" data-sort="za">Z-A</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="store-grid" class="cards-grid store-grid"></div>
+          </div>
         </div>
       </section>
     </main>
@@ -91,30 +112,54 @@
         <h3>Tu carrito</h3>
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
-      <div id="cart-items" class="cart-items"></div>
-      <div id="cart-empty" class="cart-empty" style="display: none">
-        <span>🧺</span>
-        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
-      </div>
-      <div class="cart-summary">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
-          <span>Subtotal</span>
-          <strong id="cart-subtotal">$0</strong>
+      <div class="cart-content">
+        <div class="cart-products">
+          <div class="cart-products-head">
+            <p>Productos seleccionados</p>
+            <span class="pill-badge">Entrega coordinada</span>
+          </div>
+          <div id="cart-items" class="cart-items"></div>
+          <div id="cart-empty" class="cart-empty" style="display: none">
+            <span>🧺</span>
+            <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+          </div>
         </div>
-        <p>Despacho a coordinar.</p>
-        <form id="cart-form">
-          <label>Nombre</label>
-          <input name="nombre" type="text" placeholder="Nombre" />
-          <label>Apellido</label>
-          <input name="apellido" type="text" placeholder="Apellido" />
-          <label>Dirección</label>
-          <input name="direccion" type="text" placeholder="Calle, número, comuna" />
-          <label>Comentarios</label>
-          <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
-          <button class="btn" type="submit">Enviar pedido por WhatsApp</button>
-        </form>
+        <div class="cart-summary">
+          <div class="summary-card">
+            <div class="cart-total-row">
+              <div>
+                <p class="cart-label">Subtotal estimado</p>
+                <small>Precios referenciales, despacho a coordinar.</small>
+              </div>
+              <strong id="cart-subtotal">$0</strong>
+            </div>
+            <form id="cart-form" class="compact-form">
+              <div class="double-column">
+                <div>
+                  <label>Nombre</label>
+                  <input name="nombre" type="text" placeholder="Nombre" />
+                </div>
+                <div>
+                  <label>Apellido</label>
+                  <input name="apellido" type="text" placeholder="Apellido" />
+                </div>
+              </div>
+              <label>Dirección</label>
+              <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+              <label>Comentarios</label>
+              <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
+              <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+            </form>
+          </div>
+        </div>
       </div>
     </aside>
+
+    <div class="social-floating">
+      <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><span>📸</span></a>
+      <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><span>📘</span></a>
+      <a href="https://wa.me/56912345678" target="_blank" rel="noreferrer" aria-label="WhatsApp"><span>💬</span></a>
+    </div>
 
     <footer>
       <div class="container footer-grid">

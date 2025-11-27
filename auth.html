@@ -102,30 +102,54 @@
         <h3>Tu carrito</h3>
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
-      <div id="cart-items" class="cart-items"></div>
-      <div id="cart-empty" class="cart-empty" style="display: none">
-        <span>🧺</span>
-        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
-      </div>
-      <div class="cart-summary">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
-          <span>Subtotal</span>
-          <strong id="cart-subtotal">$0</strong>
+      <div class="cart-content">
+        <div class="cart-products">
+          <div class="cart-products-head">
+            <p>Productos seleccionados</p>
+            <span class="pill-badge">Entrega coordinada</span>
+          </div>
+          <div id="cart-items" class="cart-items"></div>
+          <div id="cart-empty" class="cart-empty" style="display: none">
+            <span>🧺</span>
+            <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+          </div>
         </div>
-        <p>Despacho a coordinar.</p>
-        <form id="cart-form">
-          <label>Nombre</label>
-          <input name="nombre" type="text" placeholder="Nombre" />
-          <label>Apellido</label>
-          <input name="apellido" type="text" placeholder="Apellido" />
-          <label>Dirección</label>
-          <input name="direccion" type="text" placeholder="Calle, número, comuna" />
-          <label>Comentarios</label>
-          <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
-          <button class="btn" type="submit">Enviar pedido por WhatsApp</button>
-        </form>
+        <div class="cart-summary">
+          <div class="summary-card">
+            <div class="cart-total-row">
+              <div>
+                <p class="cart-label">Subtotal estimado</p>
+                <small>Precios referenciales, despacho a coordinar.</small>
+              </div>
+              <strong id="cart-subtotal">$0</strong>
+            </div>
+            <form id="cart-form" class="compact-form">
+              <div class="double-column">
+                <div>
+                  <label>Nombre</label>
+                  <input name="nombre" type="text" placeholder="Nombre" />
+                </div>
+                <div>
+                  <label>Apellido</label>
+                  <input name="apellido" type="text" placeholder="Apellido" />
+                </div>
+              </div>
+              <label>Dirección</label>
+              <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+              <label>Comentarios</label>
+              <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
+              <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+            </form>
+          </div>
+        </div>
       </div>
     </aside>
+
+    <div class="social-floating">
+      <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><span>📸</span></a>
+      <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><span>📘</span></a>
+      <a href="https://wa.me/56912345678" target="_blank" rel="noreferrer" aria-label="WhatsApp"><span>💬</span></a>
+    </div>
 
     <footer>
       <div class="container footer-grid">
