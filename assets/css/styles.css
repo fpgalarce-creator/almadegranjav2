@@ -1079,13 +1079,14 @@ body[data-theme='night'] .social-floating a:hover {
   align-items: center;
 }
 
+.shop-toolbar h2 {
+  margin-top: -12px;
+  margin-bottom: 6px;
+}
+
 .shop-filters {
   display: grid;
   gap: 14px;
-}
-
-.filter-block select {
-  min-width: 200px;
 }
 
 .sort-buttons {
@@ -1421,6 +1422,14 @@ body[data-theme='night'] .social-floating a:hover {
   box-shadow: var(--shadow-soft);
 }
 
+.section-accent .floating-card h4 {
+  color: #4a300e;
+}
+
+.section-accent .floating-card p {
+  color: #6a5a4f;
+}
+
 .icon-circle {
   width: 44px;
   height: 44px;
@@ -1530,6 +1539,12 @@ body[data-theme='night'] .auth-card {
   border: 1px solid rgba(247, 236, 222, 0.18);
 }
 
+body[data-theme='night'] .shop-catalog {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--surface) 86%, #2a231c),
+      color-mix(in srgb, var(--surface-alt) 88%, #3a3027));
+  border: 1px solid rgba(247, 236, 222, 0.2);
+}
+
 body[data-theme='night'] .card h3,
 body[data-theme='night'] .hero-card h3,
 body[data-theme='night'] .floating-card h3 {
@@ -1584,6 +1599,50 @@ body[data-theme='night'] .section p.section-subtitle {
   color: var(--texto-secundario);
 }
 
+body[data-theme='night'] .shop-toolbar h2 {
+  color: #faf7f2;
+}
+
+body[data-theme='night'] .shop-toolbar .section-subtitle {
+  color: #e5ded6;
+}
+
+body[data-theme='night'] .shop-toolbar .chip,
+body[data-theme='night'] .sort-buttons .chip {
+  color: #e5ded6;
+}
+
+body[data-theme='night'] .shop-toolbar .chip.active,
+body[data-theme='night'] .shop-toolbar .chip:hover,
+body[data-theme='night'] .sort-buttons .chip.active,
+body[data-theme='night'] .sort-buttons .chip:hover {
+  color: #faf7f2;
+  border-color: rgba(247, 236, 222, 0.4);
+}
+
+body[data-theme='night'] .sort-block span {
+  color: #e5ded6;
+}
+
+body[data-theme='night'] .shop-catalog .card h3 {
+  color: #faf7f2;
+}
+
+body[data-theme='night'] .shop-catalog .card p,
+body[data-theme='night'] .shop-catalog .card small {
+  color: #e5ded6;
+}
+
+body[data-theme='night'] .shop-catalog .card .price {
+  color: #d6f5c4;
+}
+
+body[data-theme='night'] .shop-catalog .card .badge {
+  color: #c8b7a6;
+  background: rgba(200, 183, 166, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(200, 183, 166, 0.22);
+}
+
 body[data-theme='night'] input,
 body[data-theme='night'] select,
 body[data-theme='night'] textarea {
@@ -1614,6 +1673,14 @@ body[data-theme='night'] .subtle-divider {
 body[data-theme='night'] .badge-accent {
   background: rgba(214, 170, 116, 0.14);
   color: var(--texto);
+}
+
+body[data-theme='night'] .section-accent .floating-card h4 {
+  color: #faf7f2;
+}
+
+body[data-theme='night'] .section-accent .floating-card p {
+  color: #ede4da;
 }
 
 body[data-theme='night'] .timeline::before {
