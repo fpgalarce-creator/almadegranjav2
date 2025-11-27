@@ -21,7 +21,15 @@
         <nav>
           <ul id="nav-links" class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="tienda.html">Tienda</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-dropdown-toggle" href="tienda.html">Tienda</a>
+              <ul class="dropdown-menu">
+                <li><a href="tienda.html?categoria=huevos">Huevos</a></li>
+                <li><a href="tienda.html?categoria=quesos">Quesos</a></li>
+                <li><a href="tienda.html?categoria=frutos-secos">Frutos secos</a></li>
+                <li><a href="tienda.html?categoria=otros">Otros</a></li>
+              </ul>
+            </li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="contacto.html">Contáctanos</a></li>
             <li><a id="admin-link" class="hidden" href="admin.html">Panel Admin</a></li>
@@ -89,6 +97,12 @@
               <div>
                 <label>Stock</label>
                 <input type="number" name="stock" min="0" required />
+              </div>
+              <div class="checkbox-field">
+                <label for="isFeatured" style="display: flex; gap: 10px; align-items: center;">
+                  <input type="checkbox" name="isFeatured" id="isFeatured" />
+                  Destacado en inicio
+                </label>
               </div>
               <div>
                 <label>URL de imagen</label>

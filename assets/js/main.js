@@ -14,6 +14,7 @@ function initNavbar() {
   const logoutBtn = qs('#logout-btn');
   const sessionLabel = qs('#session-label');
   const adminLink = qs('#admin-link');
+  const dropdownToggles = qsa('.nav-dropdown-toggle');
 
   const currentUser = window.store.getCurrentUser();
   if (sessionLabel) {
@@ -41,7 +42,20 @@ function initNavbar() {
   navLinks?.addEventListener('click', (event) => {
     if (event.target.tagName === 'A') {
       navLinks.classList.remove('open');
+      qsa('.nav-dropdown').forEach((item) => item.classList.remove('open'));
     }
+  });
+
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
+      const parent = toggle.closest('.nav-dropdown');
+      if (!parent) return;
+      // En mobile abrimos/cerramos el submenú en lugar de navegar de inmediato.
+      if (window.innerWidth <= 1024) {
+        event.preventDefault();
+        parent.classList.toggle('open');
+      }
+    });
   });
 
   window.addEventListener('scroll', () => {
@@ -180,9 +194,13 @@ function initCartForm() {
 function initFeaturedProducts() {
   const container = qs('#featured-products');
   if (!container) return;
-  const products = window.store.loadProducts().slice(0, 4);
+  const products = window.store.loadProducts();
+  // Los destacados se controlan desde el admin: si no hay marcados, mostramos un fallback.
+  const featured = products.filter((product) => product.isFeatured);
+  const fallback = products.filter((product) => product.stock > 0).slice(0, 4);
+  const productsToShow = featured.length ? featured : fallback.length ? fallback : products.slice(0, 4);
   container.innerHTML = '';
-  products.forEach((product) => {
+  productsToShow.forEach((product) => {
     const card = document.createElement('article');
     card.className = 'card';
     card.innerHTML = `
@@ -207,6 +225,11 @@ function initStoreGrid() {
   const filter = qs('#category-filter');
   const chipGroup = qs('#category-chips');
   if (!grid || !filter) return;
+
+  const setActiveCategory = (category) => {
+    filter.value = category;
+    qsa('.chip', chipGroup).forEach((chip) => chip.classList.toggle('active', chip.dataset.category === category));
+  };
 
   const render = () => {
     const products = window.store.filteredProductsByCategory(filter.value);
@@ -233,15 +256,36 @@ function initStoreGrid() {
     });
   };
 
-  filter.addEventListener('change', render);
+  filter.addEventListener('change', () => {
+    setActiveCategory(filter.value);
+    render();
+  });
   chipGroup?.addEventListener('click', (event) => {
     if (event.target.classList.contains('chip')) {
       const category = event.target.dataset.category;
-      filter.value = category;
-      qsa('.chip', chipGroup).forEach((chip) => chip.classList.toggle('active', chip.dataset.category === category));
+      setActiveCategory(category);
       render();
     }
   });
+
+  // Lee la categoría desde la URL (?categoria=) y aplica el filtro de forma automática.
+  const applyCategoryFromQuery = () => {
+    const params = new URLSearchParams(window.location.search);
+    const urlCategory = params.get('categoria');
+    if (!urlCategory) return;
+    const map = {
+      huevos: 'Huevos',
+      quesos: 'Quesos',
+      'frutos-secos': 'Frutos secos',
+      otros: 'Otros'
+    };
+    const mapped = map[urlCategory.toLowerCase()];
+    if (mapped) {
+      setActiveCategory(mapped);
+    }
+  };
+
+  applyCategoryFromQuery();
   render();
 }
 
@@ -367,6 +411,7 @@ function initAdminPage() {
         form.precio.value = product.precio;
         form.stock.value = product.stock;
         form.imagen.value = product.imagen;
+        form.isFeatured.checked = !!product.isFeatured;
         form.scrollIntoView({ behavior: 'smooth' });
       });
 
@@ -395,6 +440,7 @@ function initAdminPage() {
       presentacion: form.presentacion.value,
       precio: Number(form.precio.value),
       stock: Number(form.stock.value),
+      isFeatured: form.isFeatured.checked,
       imagen: form.imagen.value || 'assets/img/otros.jpg'
     };
     window.store.upsertProduct(productData);
