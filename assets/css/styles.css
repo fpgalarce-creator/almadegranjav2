@@ -1084,15 +1084,21 @@ body[data-theme='night'] .social-floating a:hover {
   margin-bottom: 6px;
 }
 
+.shop-toolbar .chip-group {
+  margin-top: 14px;
+}
+
 .shop-filters {
   display: grid;
   gap: 14px;
+  margin-top: 24px;
 }
 
 .sort-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 12px;
 }
 
 .sort-block span {
