@@ -48,7 +48,7 @@
     </header>
 
     <main>
-      <section class="hero-sub" style="background-image: linear-gradient(120deg, rgba(49,64,41,.85), rgba(111,143,61,.6)), url('assets/img/otros.jpg')">
+      <section class="hero-sub">
         <div class="container">
           <h1>Panel administrador</h1>
           <p>Solo visible para usuarios con rol admin. Simulado en front.</p>
@@ -161,21 +161,25 @@
               <strong id="cart-subtotal">$0</strong>
             </div>
             <form id="cart-form" class="compact-form">
-              <div class="double-column">
-                <div>
-                  <label>Nombre</label>
-                  <input name="nombre" type="text" placeholder="Nombre" />
+              <div class="summary-fields">
+                <div class="double-column">
+                  <div>
+                    <label>Nombre</label>
+                    <input name="nombre" type="text" placeholder="Nombre" />
+                  </div>
+                  <div>
+                    <label>Apellido</label>
+                    <input name="apellido" type="text" placeholder="Apellido" />
+                  </div>
                 </div>
-                <div>
-                  <label>Apellido</label>
-                  <input name="apellido" type="text" placeholder="Apellido" />
-                </div>
+                <label>Dirección</label>
+                <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+                <label>Comentarios</label>
+                <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
               </div>
-              <label>Dirección</label>
-              <input name="direccion" type="text" placeholder="Calle, número, comuna" />
-              <label>Comentarios</label>
-              <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
-              <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              <div class="cart-form-footer">
+                <button class="btn full" type="submit">Enviar pedido por WhatsApp</button>
+              </div>
             </form>
           </div>
         </div>
