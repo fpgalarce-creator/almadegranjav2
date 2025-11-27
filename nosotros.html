@@ -48,8 +48,9 @@
       </section>
 
       <section class="section">
-        <div class="container" style="display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start">
-          <div>
+        <div class="container" style="display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start">
+          <div class="floating-card">
+            <div class="pill-badge">Historia rural</div>
             <h2>Alma de Granja</h2>
             <p class="section-subtitle">Un emprendimiento nacido en el valle.</p>
             <p>
@@ -57,15 +58,40 @@
               productores vecinos para que disfrutes frescura real, trazabilidad y trato humano.
             </p>
             <p>Amamos las entregas coordinadas y conversar con cada cliente, porque la confianza se construye día a día.</p>
+            <div class="timeline" style="margin-top: 12px">
+              <div class="timeline-item">
+                <h4>2010 · Origen</h4>
+                <p>Comenzamos vendiendo huevos de gallinas libres en ferias locales.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>2018 · Comunidad</h4>
+                <p>Sumamos productores vecinos para ofrecer quesos y frutos secos seleccionados.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>2024 · Alma de Granja</h4>
+                <p>Consolidamos el e-commerce rural con despacho cercano y servicio humano.</p>
+              </div>
+            </div>
           </div>
-          <div class="card">
+          <div class="section-accent">
             <h3>Valores que nos mueven</h3>
-            <ul style="list-style: none; display: grid; gap: 12px; margin-top: 10px">
-              <li class="badge">Frescura</li>
-              <li class="badge">Confianza</li>
-              <li class="badge">Origen local</li>
-            </ul>
-            <p style="margin-top: 12px">Cada entrega es un compromiso con la calidad y la comunidad.</p>
+            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 12px">
+              <div class="floating-card">
+                <div class="icon-circle">🌱</div>
+                <h4>Frescura</h4>
+                <p>Productos que viajan poco y llegan rápido a tu mesa.</p>
+              </div>
+              <div class="floating-card">
+                <div class="icon-circle">🤝</div>
+                <h4>Confianza</h4>
+                <p>Hablamos contigo y coordinamos cada entrega con transparencia.</p>
+              </div>
+              <div class="floating-card">
+                <div class="icon-circle">📍</div>
+                <h4>Origen local</h4>
+                <p>Trabajamos con productores del valle para mantener el carácter rural.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -78,7 +104,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>

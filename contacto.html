@@ -48,26 +48,42 @@
       </section>
 
       <section class="section">
-        <div class="container" style="display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))">
-          <div class="form-card">
+        <div class="container contact-grid">
+          <div class="contact-info">
+            <div class="pill-badge">Atención directa</div>
+            <h2>Canales de contacto</h2>
+            <p class="section-subtitle">Resolvemos tus pedidos al instante.</p>
+            <p><strong>Correo:</strong> hola@almadegranja.cl</p>
+            <p><strong>WhatsApp:</strong> +56 9 1234 5678</p>
+            <p><strong>Horarios:</strong> Lunes a sábado · 9:00 a 19:00</p>
+            <button class="btn secondary" onclick="window.open('https://wa.me/56912345678?text=Hola,%20quiero%20más%20información%20sobre%20Alma%20de%20Granja','_blank')">Escribir por WhatsApp</button>
+          </div>
+          <div class="form-card floating-inputs">
             <h2>Formulario de contacto</h2>
             <form data-contact-form>
-              <label for="nombre">Nombre</label>
-              <input type="text" name="nombre" required />
-              <label for="correo">Correo</label>
-              <input type="email" name="correo" required />
-              <label for="telefono">Teléfono</label>
-              <input type="tel" name="telefono" required />
+              <div class="double-column">
+                <div>
+                  <label for="nombre">Nombre</label>
+                  <input type="text" name="nombre" required />
+                </div>
+                <div>
+                  <label for="correo">Correo</label>
+                  <input type="email" name="correo" required />
+                </div>
+                <div>
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" name="telefono" required />
+                </div>
+                <div>
+                  <label for="asunto">Asunto</label>
+                  <input type="text" name="asunto" placeholder="Pedido, consulta, alianza..." />
+                </div>
+              </div>
               <label for="mensaje">Mensaje</label>
               <textarea name="mensaje" required></textarea>
               <span class="message" style="display: none"></span>
               <button class="btn" type="submit">Enviar mensaje</button>
             </form>
-          </div>
-          <div class="card">
-            <h3>O contáctanos directo</h3>
-            <p>Correo: hola@almadegranja.cl</p>
-            <button class="btn secondary" onclick="window.open('https://wa.me/56912345678?text=Hola,%20quiero%20más%20información%20sobre%20Alma%20de%20Granja','_blank')">Abrir WhatsApp</button>
           </div>
         </div>
       </section>
@@ -80,7 +96,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>

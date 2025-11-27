@@ -42,37 +42,37 @@
     <main>
       <section class="hero">
         <div class="container">
-          <div>
-            <p class="badge">Rural moderno</p>
+          <div class="hero-animate">
+            <p class="hero-badge">Rural moderno · Entrega cercana</p>
             <h1>Alma de Granja</h1>
-            <p>Productos frescos del campo a tu mesa, con cercanía y despacho coordinado.</p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <p>Productos frescos del campo a tu mesa, con cercanía, confianza y un servicio pensado para la vida moderna.</p>
+            <div class="cta-group">
               <a class="btn" href="tienda.html">Ver tienda</a>
               <a class="btn secondary" href="#contacto">Contáctanos</a>
             </div>
           </div>
-          <div class="how-it-works">
+          <div class="how-it-works hero-card">
             <h3>Cómo funciona</h3>
-            <div class="cards-grid">
+            <div class="hero-steps">
               <div class="step">
                 <span class="step-index">1</span>
                 <div>
-                  <strong>Arma tu carrito</strong>
-                  <p>Elige tus productos favoritos del campo.</p>
+                  <p class="step-title">Arma tu pedido</p>
+                  <p>Elige tus productos favoritos del campo y agrégalos al carrito.</p>
                 </div>
               </div>
               <div class="step">
                 <span class="step-index">2</span>
                 <div>
-                  <strong>Envíanos tu pedido</strong>
-                  <p>Confirmamos por WhatsApp el detalle.</p>
+                  <p class="step-title">Envía por WhatsApp</p>
+                  <p>Confirmamos el detalle y coordinamos la entrega por chat.</p>
                 </div>
               </div>
               <div class="step">
                 <span class="step-index">3</span>
                 <div>
-                  <strong>Coordinamos despacho</strong>
-                  <p>Rancagua, Graneros y Machalí con cariño.</p>
+                  <p class="step-title">Recibe en tu casa</p>
+                  <p>Despachos con cuidado en Rancagua, Graneros y Machalí.</p>
                 </div>
               </div>
             </div>
@@ -91,25 +91,47 @@
       <section class="section">
         <div class="container dispatch-block">
           <div>
+            <div class="dispatch-icon">🚚</div>
             <h2>Despachos con cercanía</h2>
             <p>Coordinamos entregas a Rancagua, Graneros y Machalí en horarios convenientes.</p>
           </div>
-          <div class="alert">Productos frescos conservados en frío hasta tu puerta.</div>
+          <div class="alert">⚡ Productos frescos conservados en frío hasta tu puerta.</div>
         </div>
       </section>
 
       <section id="contacto" class="section">
-        <div class="container">
-          <div class="form-card">
+        <div class="container contact-grid">
+          <div class="contact-info">
+            <div class="pill-badge">Atención directa</div>
+            <h2>Conversemos</h2>
+            <p class="section-subtitle">Resolvemos tus pedidos al instante por WhatsApp o correo.</p>
+            <p><strong>Correo:</strong> hola@almadegranja.cl</p>
+            <p><strong>WhatsApp:</strong> +56 9 1234 5678</p>
+            <p><strong>Horarios:</strong> Lunes a sábado · 9:00 a 19:00</p>
+            <a class="btn" href="https://wa.me/56912345678?text=Hola%20Alma%20de%20Granja%2C%20quiero%20hacer%20un%20pedido">Escribir por WhatsApp</a>
+          </div>
+          <div class="form-card floating-inputs">
             <h2>Contáctanos</h2>
             <p class="section-subtitle">Cuéntanos qué necesitas y te respondemos en minutos.</p>
             <form data-contact-form>
-              <label for="nombre">Nombre</label>
-              <input type="text" name="nombre" required />
-              <label for="correo">Correo</label>
-              <input type="email" name="correo" required />
-              <label for="telefono">Teléfono</label>
-              <input type="tel" name="telefono" required />
+              <div class="double-column">
+                <div>
+                  <label for="nombre">Nombre</label>
+                  <input type="text" name="nombre" required />
+                </div>
+                <div>
+                  <label for="correo">Correo</label>
+                  <input type="email" name="correo" required />
+                </div>
+                <div>
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" name="telefono" required />
+                </div>
+                <div>
+                  <label for="asunto">Asunto</label>
+                  <input type="text" name="asunto" placeholder="Pedido, consulta, alianza..." />
+                </div>
+              </div>
               <label for="mensaje">Mensaje</label>
               <textarea name="mensaje" required></textarea>
               <span class="message" style="display: none"></span>
@@ -127,7 +149,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>

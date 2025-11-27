@@ -49,9 +49,17 @@
 
       <section class="section">
         <div class="container">
+          <div class="admin-header">
+            <div>
+              <div class="pill-badge">Panel administrador</div>
+              <h2>Gestión de productos</h2>
+              <p class="section-subtitle">Los productos se guardan en localStorage y se comparten con la tienda.</p>
+            </div>
+            <div class="badge">Usuario: <span id="admin-name">Admin</span></div>
+          </div>
           <div class="form-card">
-            <h2>Crear / editar producto</h2>
-            <p class="section-subtitle">Los productos se guardan en localStorage y se comparten con la tienda.</p>
+            <h3>Crear / editar producto</h3>
+            <div id="admin-feedback" class="admin-alert" style="display: none"></div>
             <form id="product-form" class="product-form">
               <div>
                 <label>Nombre</label>
@@ -92,7 +100,7 @@
             </form>
           </div>
 
-          <div style="margin-top: 24px">
+          <div class="floating-card" style="margin-top: 24px">
             <h2>Listado</h2>
             <table id="products-table" class="table">
               <thead>
@@ -118,7 +126,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>
