@@ -50,24 +50,24 @@ body[data-theme='day'] {
 }
 
 body[data-theme='night'] {
-  --btn-primary: #b49a6b;
-  --btn-premium-bg: #111111;
-  --btn-premium-text: #f4e9dc;
-  --surface: #221c16;
-  --surface-alt: #29231d;
-  --surface-muted: #2f271f;
-  --surface-contrast: #352c22;
-  --nav-base: #262018;
-  --crema: #1b1713;
-  --crema-acento: #221d17;
-  --gris-fondo: #1f1a15;
-  --verde-oscuro: #b49a6b;
-  --verde-campo: #c9b487;
-  --verde-profundo: #8b7a58;
-  --marron: #d6aa74;
-  --texto: #f3e8da;
-  --texto-secundario: #d6c8b8;
-  --texto-inverso: #f6ecdf;
+  --btn-primary: #c3ad82;
+  --btn-premium-bg: #0f0f0f;
+  --btn-premium-text: #f7ecde;
+  --surface: #2c241d;
+  --surface-alt: #332b23;
+  --surface-muted: #3a3027;
+  --surface-contrast: #41362c;
+  --nav-base: #2a231c;
+  --crema: #1a1510;
+  --crema-acento: #221c16;
+  --gris-fondo: #221c17;
+  --verde-oscuro: #c5ae82;
+  --verde-campo: #d6c29b;
+  --verde-profundo: #9c8a67;
+  --marron: #e0b883;
+  --texto: #f7ecde;
+  --texto-secundario: #dcccbb;
+  --texto-inverso: #fff9f0;
   color-scheme: dark;
 }
 
@@ -99,6 +99,12 @@ h3 {
   line-height: 1.15;
 }
 
+body[data-theme='night'] h1,
+body[data-theme='night'] h2,
+body[data-theme='night'] h3 {
+  color: var(--texto);
+}
+
 p,
 li,
 small,
@@ -108,6 +114,17 @@ select,
 textarea,
 button {
   font-family: var(--sans);
+  color: var(--texto-secundario);
+}
+
+body[data-theme='night'] p,
+body[data-theme='night'] li,
+body[data-theme='night'] small,
+body[data-theme='night'] label,
+body[data-theme='night'] input,
+body[data-theme='night'] select,
+body[data-theme='night'] textarea,
+body[data-theme='night'] button {
   color: var(--texto-secundario);
 }
 
@@ -963,6 +980,36 @@ footer p {
   filter: brightness(1.05);
 }
 
+body[data-theme='day'] .social-floating a {
+  background: linear-gradient(150deg, #fdf8f1, #f2e7da);
+  border-color: rgba(184, 132, 86, 0.32);
+  color: #2f2923;
+  box-shadow: 0 12px 28px rgba(47, 41, 35, 0.12);
+}
+
+body[data-theme='day'] .social-floating a span {
+  color: #2f2923;
+}
+
+body[data-theme='night'] .social-floating a {
+  background: linear-gradient(150deg, #2f271f, #3c3229);
+  border: 1px solid rgba(247, 236, 222, 0.2);
+  color: var(--texto);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+  filter: none;
+}
+
+body[data-theme='night'] .social-floating a span {
+  color: var(--texto);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+}
+
+body[data-theme='night'] .social-floating a:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.52);
+  filter: brightness(1.04);
+}
+
 
 .hero-sub {
   background: linear-gradient(180deg, #f8f3ec, #f2e7da);
@@ -1453,8 +1500,9 @@ body[data-theme='night'] .nav-cart {
 }
 
 body[data-theme='night'] .nav-actions .btn.outline {
-  color: var(--btn-premium-text);
-  border-color: rgba(244, 233, 220, 0.25);
+  color: var(--texto);
+  border-color: rgba(247, 236, 222, 0.32);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 body[data-theme='night'] .card,
@@ -1469,8 +1517,9 @@ body[data-theme='night'] .dropdown-menu,
 body[data-theme='night'] .table-wrapper,
 body[data-theme='night'] .auth-card,
 body[data-theme='night'] .section-accent {
-  background: linear-gradient(145deg, var(--surface), var(--surface-alt));
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--surface) 85%, #3a3027),
+      color-mix(in srgb, var(--surface-alt) 92%, #4a3f34));
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.36);
 }
 
 body[data-theme='night'] .card,
@@ -1478,7 +1527,21 @@ body[data-theme='night'] .hero-card,
 body[data-theme='night'] .form-card,
 body[data-theme='night'] .table-wrapper,
 body[data-theme='night'] .auth-card {
-  border: 1px solid rgba(244, 233, 220, 0.16);
+  border: 1px solid rgba(247, 236, 222, 0.18);
+}
+
+body[data-theme='night'] .card h3,
+body[data-theme='night'] .hero-card h3,
+body[data-theme='night'] .floating-card h3 {
+  color: var(--texto);
+}
+
+body[data-theme='night'] .card p,
+body[data-theme='night'] .card small,
+body[data-theme='night'] .hero-card p,
+body[data-theme='night'] .floating-card p,
+body[data-theme='night'] .cart-empty {
+  color: var(--texto-secundario);
 }
 
 body[data-theme='night'] .pill-badge,
@@ -1489,12 +1552,36 @@ body[data-theme='night'] .chip,
 body[data-theme='night'] .nav-cart,
 body[data-theme='night'] .theme-toggle {
   color: var(--texto);
-  background: linear-gradient(140deg, var(--surface-alt), var(--surface-contrast));
-  border-color: rgba(244, 233, 220, 0.25);
+  background: linear-gradient(140deg, color-mix(in srgb, var(--surface-muted) 75%, #4a3f34),
+      color-mix(in srgb, var(--surface-contrast) 88%, #52463a));
+  border-color: rgba(247, 236, 222, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(247, 236, 222, 0.08);
+}
+
+body[data-theme='night'] .hero-badge {
+  background: linear-gradient(140deg, color-mix(in srgb, var(--surface-muted) 70%, #42382f),
+      color-mix(in srgb, var(--surface-contrast) 85%, #514539));
+  color: var(--texto);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 body[data-theme='night'] .section {
   background: linear-gradient(180deg, var(--crema-acento), var(--crema));
+}
+
+body[data-theme='night'] .hero,
+body[data-theme='night'] .hero-sub,
+body[data-theme='night'] .shop-hero {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-alt) 72%, #1a1510), var(--crema));
+  color: var(--texto);
+}
+
+body[data-theme='night'] .hero p,
+body[data-theme='night'] .hero-sub p,
+body[data-theme='night'] .shop-hero p,
+body[data-theme='night'] .shop-hero__aside .hero-card p,
+body[data-theme='night'] .section p.section-subtitle {
+  color: var(--texto-secundario);
 }
 
 body[data-theme='night'] input,
@@ -1503,6 +1590,21 @@ body[data-theme='night'] textarea {
   background: var(--surface-alt);
   color: var(--texto);
   border-color: rgba(244, 233, 220, 0.2);
+}
+
+body[data-theme='night'] .btn,
+body[data-theme='night'] .btn.secondary {
+  color: var(--texto-inverso);
+}
+
+body[data-theme='night'] .btn-premium-black {
+  color: var(--texto-inverso);
+  border: 1px solid rgba(247, 236, 222, 0.14);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+body[data-theme='night'] .btn-premium-black:hover:not(:disabled) {
+  filter: brightness(1.06);
 }
 
 body[data-theme='night'] .subtle-divider {
