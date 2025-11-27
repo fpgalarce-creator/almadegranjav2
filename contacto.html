@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alma de Granja | Contacto</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container">
+        <a class="brand" href="index.html">
+          <span>AG</span>
+          Alma de Granja
+        </a>
+        <button id="nav-toggle" class="nav-toggle" aria-label="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav>
+          <ul id="nav-links" class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a id="admin-link" class="hidden" href="admin.html">Panel Admin</a></li>
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <span id="session-label" class="session-label"></span>
+          <a id="auth-link" class="btn outline" href="auth.html">Registro / Iniciar sesión</a>
+          <button id="logout-btn" class="btn outline hidden">Cerrar sesión</button>
+          <button id="cart-btn" class="nav-cart" aria-label="Carrito">
+            🛒
+            <span id="cart-badge" class="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-sub" style="background-image: linear-gradient(120deg, rgba(49,64,41,.85), rgba(111,143,61,.6)), url('assets/img/otros.jpg')">
+        <div class="container">
+          <h1>Conversemos</h1>
+          <p>Estamos atentos a tus pedidos y consultas.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container" style="display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))">
+          <div class="form-card">
+            <h2>Formulario de contacto</h2>
+            <form data-contact-form>
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre" required />
+              <label for="correo">Correo</label>
+              <input type="email" name="correo" required />
+              <label for="telefono">Teléfono</label>
+              <input type="tel" name="telefono" required />
+              <label for="mensaje">Mensaje</label>
+              <textarea name="mensaje" required></textarea>
+              <span class="message" style="display: none"></span>
+              <button class="btn" type="submit">Enviar mensaje</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3>O contáctanos directo</h3>
+            <p>Correo: hola@almadegranja.cl</p>
+            <button class="btn secondary" onclick="window.open('https://wa.me/56912345678?text=Hola,%20quiero%20más%20información%20sobre%20Alma%20de%20Granja','_blank')">Abrir WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="cart-overlay"></div>
+    <aside id="cart-panel">
+      <div class="cart-header">
+        <h3>Tu carrito</h3>
+        <button id="cart-close" class="btn outline">Cerrar</button>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div class="cart-summary">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+          <span>Subtotal</span>
+          <strong id="cart-subtotal">$0</strong>
+        </div>
+        <p>Despacho a coordinar.</p>
+        <form id="cart-form">
+          <label>Nombre</label>
+          <input name="nombre" type="text" placeholder="Nombre" />
+          <label>Apellido</label>
+          <input name="apellido" type="text" placeholder="Apellido" />
+          <label>Dirección</label>
+          <input name="direccion" type="text" placeholder="Calle, número, comuna" />
+          <label>Comentarios</label>
+          <textarea name="comentarios" placeholder="Instrucciones de entrega"></textarea>
+          <button class="btn" type="submit">Enviar pedido por WhatsApp</button>
+        </form>
+      </div>
+    </aside>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <h3>Alma de Granja</h3>
+          <p>Productos frescos, selección cuidada y cercanía real.</p>
+        </div>
+        <div>
+          <h3>Despachos</h3>
+          <p>Rancagua · Graneros · Machalí</p>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <p>hola@almadegranja.cl</p>
+          <p>+56 9 1234 5678</p>
+        </div>
+      </div>
+      <div class="container" style="margin-top: 12px">© 2024 Alma de Granja. Todos los derechos reservados.</div>
+    </footer>
+
+    <script src="assets/js/store.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
