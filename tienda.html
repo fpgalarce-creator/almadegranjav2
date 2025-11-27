@@ -49,20 +49,30 @@
 
       <section class="section">
         <div class="container">
-          <div style="display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap">
+          <div class="floating-card" style="display: grid; gap: 10px; align-items: center; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
             <div>
               <h2>Catálogo</h2>
               <p class="section-subtitle">Todo lo que tenemos listo para ti esta semana.</p>
+              <div class="chip-group" id="category-chips">
+                <button class="chip active" data-category="Todas">Todas</button>
+                <button class="chip" data-category="Huevos">Huevos</button>
+                <button class="chip" data-category="Quesos">Quesos</button>
+                <button class="chip" data-category="Frutos secos">Frutos secos</button>
+                <button class="chip" data-category="Otros">Otros</button>
+              </div>
             </div>
-            <select id="category-filter" style="min-width: 180px">
-              <option value="Todas">Todas</option>
-              <option value="Huevos">Huevos</option>
-              <option value="Quesos">Quesos</option>
-              <option value="Frutos secos">Frutos secos</option>
-              <option value="Otros">Otros</option>
-            </select>
+            <div style="justify-self: end; display: grid; gap: 6px;">
+              <label for="category-filter" style="font-weight: 600; color: var(--verde-oscuro);">Filtrar</label>
+              <select id="category-filter" style="min-width: 200px">
+                <option value="Todas">Todas</option>
+                <option value="Huevos">Huevos</option>
+                <option value="Quesos">Quesos</option>
+                <option value="Frutos secos">Frutos secos</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
           </div>
-          <div id="store-grid" class="cards-grid" style="margin-top: 20px"></div>
+          <div id="store-grid" class="cards-grid" style="margin-top: 24px"></div>
         </div>
       </section>
     </main>
@@ -74,7 +84,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>

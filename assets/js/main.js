@@ -38,6 +38,18 @@ function initNavbar() {
     navLinks?.classList.toggle('open');
   });
 
+  navLinks?.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+      navLinks.classList.remove('open');
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    const navbar = qs('.navbar');
+    if (!navbar) return;
+    navbar.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
   qsa('.nav-links a').forEach((link) => {
     if (link.href === window.location.href) {
       link.classList.add('active');
@@ -79,7 +91,7 @@ function renderCart() {
 
   list.innerHTML = '';
   if (!items.length) {
-    cartEmpty.style.display = 'block';
+    cartEmpty.style.display = 'grid';
   } else {
     cartEmpty.style.display = 'none';
     items.forEach((entry) => {
@@ -193,6 +205,7 @@ function initFeaturedProducts() {
 function initStoreGrid() {
   const grid = qs('#store-grid');
   const filter = qs('#category-filter');
+  const chipGroup = qs('#category-chips');
   if (!grid || !filter) return;
 
   const render = () => {
@@ -201,9 +214,10 @@ function initStoreGrid() {
     products.forEach((product) => {
       const card = document.createElement('article');
       card.className = 'card';
+      const isNew = ['o2', 'f3'].includes(product.id);
       card.innerHTML = `
         <img src="${product.imagen}" alt="${product.nombre}">
-        <div class="badge">${product.categoria}</div>
+        <div class="badge">${product.categoria} ${isNew ? '<span class="badge-new">Nuevo</span>' : ''}</div>
         <h3>${product.nombre}</h3>
         <small>${product.presentacion}</small>
         <p>${product.descripcion}</p>
@@ -220,6 +234,14 @@ function initStoreGrid() {
   };
 
   filter.addEventListener('change', render);
+  chipGroup?.addEventListener('click', (event) => {
+    if (event.target.classList.contains('chip')) {
+      const category = event.target.dataset.category;
+      filter.value = category;
+      qsa('.chip', chipGroup).forEach((chip) => chip.classList.toggle('active', chip.dataset.category === category));
+      render();
+    }
+  });
   render();
 }
 
@@ -312,7 +334,13 @@ function initAdminPage() {
 
   const form = qs('#product-form');
   const list = qs('#products-table tbody');
+  const adminName = qs('#admin-name');
+  const adminFeedback = qs('#admin-feedback');
   let editingId = null;
+
+  if (adminName) {
+    adminName.textContent = currentUser.nombre || 'Admin';
+  }
 
   const render = () => {
     const products = window.store.loadProducts();
@@ -346,6 +374,10 @@ function initAdminPage() {
         if (confirm('¿Eliminar producto?')) {
           window.store.deleteProduct(product.id);
           render();
+          if (adminFeedback) {
+            adminFeedback.textContent = 'Producto eliminado.';
+            adminFeedback.style.display = 'block';
+          }
         }
       });
 
@@ -369,6 +401,10 @@ function initAdminPage() {
     editingId = null;
     form.reset();
     render();
+    if (adminFeedback) {
+      adminFeedback.textContent = 'Producto guardado correctamente.';
+      adminFeedback.style.display = 'block';
+    }
   });
 
   render();

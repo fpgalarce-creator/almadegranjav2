@@ -49,13 +49,21 @@
 
       <section class="section">
         <div class="container auth-wrapper">
+          <div class="auth-visual">
+            <div class="auth-visual-content">
+              <div class="hero-badge">Acceso seguro</div>
+              <h2>Bienvenido a la familia</h2>
+              <p>Administra tus pedidos y guarda tus datos para compras más rápidas.</p>
+            </div>
+            <div class="hero-badge" style="justify-self: start;">Soporte cercano · Respuesta rápida</div>
+          </div>
           <div>
             <div class="tabs">
               <button data-tab="login" class="active">Iniciar sesión</button>
               <button data-tab="register">Registrarme</button>
             </div>
             <div style="margin-top: 16px" data-panel="login">
-              <form id="login-form">
+              <form id="login-form" class="floating-inputs">
                 <label>Correo</label>
                 <input type="email" name="correo" required />
                 <label>Contraseña</label>
@@ -65,7 +73,7 @@
               </form>
             </div>
             <div style="margin-top: 16px; display: none" data-panel="register">
-              <form id="register-form">
+              <form id="register-form" class="floating-inputs">
                 <label>Nombre</label>
                 <input type="text" name="nombre" required />
                 <label>Apellido</label>
@@ -80,11 +88,9 @@
                 <button class="btn" type="submit">Crear cuenta</button>
               </form>
             </div>
-          </div>
-          <div class="card">
-            <h3>Simulación</h3>
-            <p>Autenticación guardada en localStorage. Para un entorno productivo se debe implementar un backend seguro.</p>
-            <p>Usuario admin de ejemplo: admin@almadegranja.cl / admin123.</p>
+            <div class="admin-alert" style="margin-top: 14px">
+              Usuario admin demo: admin@almadegranja.cl / admin123. Datos se guardan en localStorage para pruebas.
+            </div>
           </div>
         </div>
       </section>
@@ -97,7 +103,10 @@
         <button id="cart-close" class="btn outline">Cerrar</button>
       </div>
       <div id="cart-items" class="cart-items"></div>
-      <p id="cart-empty" style="padding: 18px; display: none">Tu carrito está vacío.</p>
+      <div id="cart-empty" class="cart-empty" style="display: none">
+        <span>🧺</span>
+        <p>Tu carrito está vacío, agrega productos desde la tienda.</p>
+      </div>
       <div class="cart-summary">
         <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
           <span>Subtotal</span>

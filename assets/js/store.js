@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
   currentUser: 'adg_current_user'
 };
 
+// --- Productos ---
 const initialProducts = [
   {
     id: 'h1',
@@ -99,6 +100,7 @@ const initialProducts = [
   }
 ];
 
+// --- Usuarios ---
 const initialUsers = [
   {
     nombre: 'Admin',
@@ -165,6 +167,7 @@ function setCurrentUser(user) {
   localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(user));
 }
 
+// --- Carrito ---
 function loadCart() {
   const stored = localStorage.getItem(STORAGE_KEYS.cart);
   return stored ? JSON.parse(stored) : [];
