@@ -7,6 +7,35 @@ function qsa(selector, scope = document) {
   return Array.from(scope.querySelectorAll(selector));
 }
 
+const THEME_KEY = 'almaTheme';
+
+function applyTheme(theme) {
+  const nextTheme = theme === 'night' ? 'night' : 'day';
+  document.body.setAttribute('data-theme', nextTheme);
+  try {
+    localStorage.setItem(THEME_KEY, nextTheme);
+  } catch (error) {
+    console.error('No se pudo guardar el tema:', error);
+  }
+
+  const toggle = qs('#theme-toggle');
+  if (toggle) {
+    toggle.setAttribute('aria-label', nextTheme === 'night' ? 'Cambiar a tema día' : 'Cambiar a tema noche');
+  }
+}
+
+function initThemeToggle() {
+  const stored = localStorage.getItem(THEME_KEY);
+  const initialTheme = stored === 'night' ? 'night' : 'day';
+  applyTheme(initialTheme);
+
+  const toggle = qs('#theme-toggle');
+  toggle?.addEventListener('click', () => {
+    const current = document.body.getAttribute('data-theme');
+    applyTheme(current === 'night' ? 'day' : 'night');
+  });
+}
+
 function initNavbar() {
   const navToggle = qs('#nav-toggle');
   const navLinks = qs('#nav-links');
@@ -559,6 +588,7 @@ function initAdminPage() {
 }
 
 function initPage() {
+  initThemeToggle();
   initNavbar();
   updateCartBadge();
   initCartForm();
