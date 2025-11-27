@@ -287,15 +287,15 @@ function initFeaturedProducts() {
 
 function initStoreGrid() {
   const grid = qs('#store-grid');
-  const filter = qs('#category-filter');
   const chipGroup = qs('#category-chips');
   const sortButtons = qsa('[data-sort]');
-  if (!grid || !filter) return;
+  if (!grid) return;
 
   let currentSort = 'price-asc';
+  let currentCategory = 'Todas';
 
   const setActiveCategory = (category) => {
-    filter.value = category;
+    currentCategory = category;
     qsa('.chip', chipGroup).forEach((chip) => chip.classList.toggle('active', chip.dataset.category === category));
   };
 
@@ -314,7 +314,7 @@ function initStoreGrid() {
   };
 
   const render = () => {
-    const products = sortProducts(window.store.filteredProductsByCategory(filter.value));
+    const products = sortProducts(window.store.filteredProductsByCategory(currentCategory));
     grid.innerHTML = '';
     products.forEach((product) => {
       const card = document.createElement('article');
@@ -378,10 +378,6 @@ function initStoreGrid() {
     });
   };
 
-  filter.addEventListener('change', () => {
-    setActiveCategory(filter.value);
-    render();
-  });
   chipGroup?.addEventListener('click', (event) => {
     if (event.target.classList.contains('chip')) {
       const category = event.target.dataset.category;
