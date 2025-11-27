@@ -126,14 +126,14 @@ function renderCart() {
       `;
 
       row.querySelector('[data-action="minus"]').addEventListener('click', () => {
-        const newQty = Math.max(1, entry.cantidad - 1);
-        window.store.updateCartItem(entry.product.id, newQty);
+        const newQty = entry.cantidad - 1;
+        window.store.setCartItemQuantity(entry.product.id, newQty);
         renderCart();
         updateCartBadge();
       });
 
       row.querySelector('[data-action="plus"]').addEventListener('click', () => {
-        window.store.updateCartItem(entry.product.id, entry.cantidad + 1);
+        window.store.setCartItemQuantity(entry.product.id, entry.cantidad + 1);
         renderCart();
         updateCartBadge();
       });
@@ -210,12 +210,48 @@ function initFeaturedProducts() {
       <small>${product.presentacion}</small>
       <p>${product.descripcion}</p>
       <div class="price">$${product.precio.toLocaleString('es-CL')}</div>
-      <button class="btn" data-id="${product.id}">Agregar al carrito</button>
+      <div class="card-actions">
+        <div class="quantity pill">
+          <button data-action="minus">-</button>
+          <span class="qty-value">${window.store.getCartQuantity(product.id)}</span>
+          <button data-action="plus">+</button>
+        </div>
+        <button class="btn add-btn" data-id="${product.id}">Agregar al carrito</button>
+      </div>
     `;
-    card.querySelector('button').addEventListener('click', () => {
+    const minus = card.querySelector('[data-action="minus"]');
+    const plus = card.querySelector('[data-action="plus"]');
+    const qty = card.querySelector('.qty-value');
+    const addBtn = card.querySelector('.add-btn');
+
+    const syncQty = () => {
+      const value = window.store.getCartQuantity(product.id);
+      qty.textContent = value;
+      minus.disabled = value === 0;
+    };
+
+    addBtn.addEventListener('click', () => {
       window.store.addProductToCart(product.id);
+      syncQty();
+      renderCart();
       updateCartBadge();
     });
+
+    plus.addEventListener('click', () => {
+      window.store.setCartItemQuantity(product.id, window.store.getCartQuantity(product.id) + 1);
+      syncQty();
+      renderCart();
+      updateCartBadge();
+    });
+
+    minus.addEventListener('click', () => {
+      window.store.setCartItemQuantity(product.id, window.store.getCartQuantity(product.id) - 1);
+      syncQty();
+      renderCart();
+      updateCartBadge();
+    });
+
+    syncQty();
     container.appendChild(card);
   });
 }
@@ -224,20 +260,38 @@ function initStoreGrid() {
   const grid = qs('#store-grid');
   const filter = qs('#category-filter');
   const chipGroup = qs('#category-chips');
+  const sortButtons = qsa('[data-sort]');
   if (!grid || !filter) return;
+
+  let currentSort = 'price-asc';
 
   const setActiveCategory = (category) => {
     filter.value = category;
     qsa('.chip', chipGroup).forEach((chip) => chip.classList.toggle('active', chip.dataset.category === category));
   };
 
+  const sortProducts = (products) => {
+    const sorted = [...products];
+    switch (currentSort) {
+      case 'price-asc':
+        return sorted.sort((a, b) => a.precio - b.precio);
+      case 'price-desc':
+        return sorted.sort((a, b) => b.precio - a.precio);
+      case 'za':
+        return sorted.sort((a, b) => b.nombre.localeCompare(a.nombre, 'es'));
+      default:
+        return sorted.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+    }
+  };
+
   const render = () => {
-    const products = window.store.filteredProductsByCategory(filter.value);
+    const products = sortProducts(window.store.filteredProductsByCategory(filter.value));
     grid.innerHTML = '';
     products.forEach((product) => {
       const card = document.createElement('article');
       card.className = 'card';
       const isNew = ['o2', 'f3'].includes(product.id);
+      const quantity = window.store.getCartQuantity(product.id);
       card.innerHTML = `
         <img src="${product.imagen}" alt="${product.nombre}">
         <div class="badge">${product.categoria} ${isNew ? '<span class="badge-new">Nuevo</span>' : ''}</div>
@@ -246,12 +300,51 @@ function initStoreGrid() {
         <p>${product.descripcion}</p>
         <div class="price">$${product.precio.toLocaleString('es-CL')}</div>
         ${product.stock === 0 ? '<span class="status-pill">Sin stock</span>' : ''}
-        <button class="btn" data-id="${product.id}" ${product.stock === 0 ? 'disabled' : ''}>Agregar al carrito</button>
+        <div class="card-actions">
+          <div class="quantity pill">
+            <button data-action="minus">-</button>
+            <span class="qty-value">${quantity}</span>
+            <button data-action="plus">+</button>
+          </div>
+          <button class="btn add-btn" data-id="${product.id}" ${product.stock === 0 ? 'disabled' : ''}>Agregar al carrito</button>
+        </div>
       `;
-      card.querySelector('button').addEventListener('click', () => {
+
+      const minus = card.querySelector('[data-action="minus"]');
+      const plus = card.querySelector('[data-action="plus"]');
+      const qty = card.querySelector('.qty-value');
+      const addBtn = card.querySelector('.add-btn');
+
+      const syncQty = () => {
+        const value = window.store.getCartQuantity(product.id);
+        qty.textContent = value;
+        minus.disabled = value === 0 || product.stock === 0;
+        plus.disabled = product.stock === 0;
+        addBtn.disabled = product.stock === 0;
+      };
+
+      addBtn.addEventListener('click', () => {
         window.store.addProductToCart(product.id);
+        syncQty();
+        renderCart();
         updateCartBadge();
       });
+
+      plus.addEventListener('click', () => {
+        window.store.setCartItemQuantity(product.id, window.store.getCartQuantity(product.id) + 1);
+        syncQty();
+        renderCart();
+        updateCartBadge();
+      });
+
+      minus.addEventListener('click', () => {
+        window.store.setCartItemQuantity(product.id, window.store.getCartQuantity(product.id) - 1);
+        syncQty();
+        renderCart();
+        updateCartBadge();
+      });
+
+      syncQty();
       grid.appendChild(card);
     });
   };
@@ -287,6 +380,15 @@ function initStoreGrid() {
 
   applyCategoryFromQuery();
   render();
+
+  sortButtons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      sortButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSort = btn.dataset.sort;
+      render();
+    })
+  );
 }
 
 function initContactForms() {
